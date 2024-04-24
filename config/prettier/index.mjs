@@ -1,6 +1,6 @@
 /** @typedef {import('prettier').Config} PrettierConfig */
 
-/** @type {PrettierConfig} */
+/** @type { PrettierConfig } */
 const config = {
     plugins: ['prettier-plugin-tailwindcss'],
     printWidth: 80,
@@ -13,7 +13,7 @@ const config = {
     trailingComma: 'es5',
     bracketSpacing: true,
     arrowParens: 'always',
-    endOfLine: 'crlf',
+    endOfLine: 'auto',
     bracketSameLine: false,
 }
 
