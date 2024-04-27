@@ -2,15 +2,14 @@ import { z } from 'zod'
 
 // Usamos array quando não sabemos o número total de elementos -> dois elementos = tupla (programação funcional?)
 
-export const projectSubject = z.tuple([
+export const inviteSubject = z.tuple([
   z.union([
     z.literal('manage'),
     z.literal('get'),
     z.literal('create'),
-    z.literal('update'),
     z.literal('delete'),
   ]),
-  z.literal('Project'),
+  z.literal('Invite'),
 ])
 
-export type ProjectSubject = z.infer<typeof projectSubject>
+export type InviteSubject = z.infer<typeof inviteSubject>
