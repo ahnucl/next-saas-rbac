@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { projectSchema } from '../models/project'
+
 // Usamos array quando não sabemos o número total de elementos -> dois elementos = tupla (programação funcional?)
 
 export const projectSubject = z.tuple([
@@ -10,7 +12,7 @@ export const projectSubject = z.tuple([
     z.literal('update'),
     z.literal('delete'),
   ]),
-  z.literal('Project'),
+  z.union([z.literal('Project'), projectSchema]),
 ])
 
 export type ProjectSubject = z.infer<typeof projectSubject>
