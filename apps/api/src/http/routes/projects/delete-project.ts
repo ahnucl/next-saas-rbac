@@ -50,7 +50,7 @@ export async function deleteProject(app: FastifyInstance) {
         const { cannot } = getUserPermissions(userId, membership.role)
         const authProject = projectSchema.parse(project)
 
-        if (cannot('create', authProject)) {
+        if (cannot('delete', authProject)) {
           throw new UnauthorizedError(
             'You are not allowed to delete this project.',
           )
