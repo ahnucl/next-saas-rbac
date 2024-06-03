@@ -19,7 +19,7 @@ export async function updateProject(app: FastifyInstance) {
       {
         schema: {
           tags: ['projects'],
-          summary: 'Create a new project',
+          summary: 'Update a new project',
           body: z.object({
             name: z.string(),
             description: z.string(),
