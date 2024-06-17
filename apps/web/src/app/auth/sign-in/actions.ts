@@ -1,10 +1,13 @@
 'use server'
 
 import { HTTPError } from 'ky'
+/**
+ * No next só é possível alterar cookies em 3 lugares: server actions, route handlers, middleware (se for http only)
+ */
+import { cookies } from 'next/headers'
 import { z } from 'zod'
 
 import { apiSingInWithEmailAndPassword } from '@/http/sign-in-with-email-and-password'
-
 /**
  * Com o JS desabilitado no navegador, não foi enviado o ACTION ID
  *
@@ -34,7 +37,10 @@ export async function ssSingInWithEmailAndPassword(data: FormData) {
       password: password.toString(),
     })
 
-    console.log(token)
+    cookies().set('token', token, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    })
   } catch (error) {
     if (error instanceof HTTPError) {
       const { message } = await error.response.json()
