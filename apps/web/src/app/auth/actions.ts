@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation'
 
-export async function signInWithGithub() {
+export async function ssSignInWithGithub() {
   const githubSignInURL = new URL('login/oauth/authorize', 'https://github.com')
 
   githubSignInURL.searchParams.set('client_id', 'Ov23lirUO0uY4wKPxUye')
