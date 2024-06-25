@@ -15,18 +15,12 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 
-interface OrganizationSwitcherProps {
-  activeOrgSlug?: string
-}
-
-export async function OrganizationSwitcher({
-  activeOrgSlug,
-}: OrganizationSwitcherProps) {
-  // const currentOrg = cookies().get('org')?.value
+export async function OrganizationSwitcher() {
+  const currentOrgSlug = cookies().get('org')?.value
   const { organizations } = await apiGetOrganizations()
 
   const currentOrganization = organizations.find(
-    (org) => org.slug === activeOrgSlug,
+    (org) => org.slug === currentOrgSlug,
   )
 
   return (

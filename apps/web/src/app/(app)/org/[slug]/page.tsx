@@ -1,15 +1,9 @@
 import { Header } from '@/components/header'
 
-interface PageParams {
-  params: {
-    slug: string
-  }
-}
-
-export default async function Projects({ params }: PageParams) {
+export default async function Projects() {
   return (
     <div className="py-4">
-      <Header slug={params.slug} />
+      <Header />
       <main></main>
     </div>
   )
