@@ -56,5 +56,5 @@ export async function auth() {
     // cookies().delete('token')
   }
 
-  redirect('/auth/sign-out')
+  redirect('/api/auth/sign-out')
 }
