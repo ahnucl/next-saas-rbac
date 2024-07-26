@@ -25,8 +25,6 @@ export function ProjectSwitcher() {
     project: string
   }>()
 
-  //   const projects = React.use(apiGetProjects(orgSlug))
-
   const { data, isLoading } = useQuery({
     queryKey: [orgSlug, 'projects'],
     queryFn: () => apiGetProjects(orgSlug),
