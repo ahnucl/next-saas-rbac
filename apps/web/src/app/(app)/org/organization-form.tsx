@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/use-form-state'
 
-import { ssCreateOrganization } from './actions'
+import { ssCreateOrganization } from '../create-organization/actions'
 
 export function OrganizationForm() {
   const [{ success, message, errors }, handleSubmit, isPending] =
