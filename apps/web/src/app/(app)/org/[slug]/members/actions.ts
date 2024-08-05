@@ -1,5 +1,6 @@
 'use server'
 
+import { Role } from '@saas/auth'
 import { revalidateTag } from 'next/cache'
 
 import { getCurrentOrg } from '@/auth'
