@@ -1,6 +1,7 @@
 'use server'
 
 import { HTTPError } from 'ky'
+import { revalidateTag } from 'next/cache'
 import { z } from 'zod'
 
 import { getCurrentOrg } from '@/auth'
@@ -22,12 +23,16 @@ export async function ssCreateProject(data: FormData) {
 
   const { name, description } = result.data
 
+  const currentOrg = getCurrentOrg()!
+
   try {
     await apiCreateProject({
-      org: getCurrentOrg()!, // A página que chama essa função não pode ter org nulo (contexto)
+      org: currentOrg, // A página que chama essa função não pode ter org nulo (contexto)
       name,
       description,
     })
+
+    revalidateTag(`${currentOrg}/projects`)
   } catch (error) {
     if (error instanceof HTTPError) {
       const { message } = await error.response.json()

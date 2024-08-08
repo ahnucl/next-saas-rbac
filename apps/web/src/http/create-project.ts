@@ -18,5 +18,8 @@ export async function apiCreateProject({
       name,
       description,
     },
+    next: {
+      tags: [`${org}/projects`],
+    },
   })
 }
