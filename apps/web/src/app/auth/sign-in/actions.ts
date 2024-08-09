@@ -7,6 +7,7 @@ import { HTTPError } from 'ky'
 import { cookies } from 'next/headers'
 import { z } from 'zod'
 
+import { apiAcceptInvite } from '@/http/accept-invite'
 import { apiSingInWithEmailAndPassword } from '@/http/sign-in-with-email-and-password'
 /**
  * Com o JS desabilitado no navegador, não foi enviado o ACTION ID
@@ -41,6 +42,15 @@ export async function ssSingInWithEmailAndPassword(data: FormData) {
       path: '/',
       maxAge: 60 * 60 * 24 * 7, // 7 days
     })
+
+    const inviteId = cookies().get('inviteId')?.value
+
+    if (inviteId) {
+      try {
+        await apiAcceptInvite(inviteId)
+        cookies().delete('inviteId')
+      } catch {}
+    }
   } catch (error) {
     if (error instanceof HTTPError) {
       const { message } = await error.response.json()
